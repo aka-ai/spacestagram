@@ -1,5 +1,10 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import ImageCard from './Card.js'
 
 function App() {
   
@@ -22,9 +27,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {apiResponse.length ? apiResponse.map((el, idx)=> <img src={el.url} key={idx}></img>) : <p>loading</p> }
-        
       </header>
+      <section className="main-container">
+        {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard nasaData={el} key={idx} />) : <h1>loading</h1>}
+      </section>
+      <footer className="footer">
+
+      </footer>
     </div>
   );
 }
