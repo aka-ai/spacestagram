@@ -27,12 +27,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h1>Spacestagram</h1>
+        <p>Brought to you by NASA's image API</p>
       </header>
       <section className="main-container">
         {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard nasaData={el} key={idx} />) : <h1>loading</h1>}
       </section>
       <footer className="footer">
-
+        <p>By Ai Akarach</p>
+        <p>aiakrjs@gmail.com</p>
       </footer>
     </div>
   );
