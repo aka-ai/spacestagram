@@ -7,10 +7,16 @@
   pointer-events: none;
 }
 
-.App-header, .footer {
+header {
   background-color: white;
   min-height: 10vh;
   font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
+
+footer {
+  background-color: white;
+  min-height: 10vh;
   color: #282c34;
 }
 

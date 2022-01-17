@@ -27,8 +27,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Spacestagram</h1>
-        <p>Brought to you by NASA's image API</p>
+        <h3>Spacestagram</h3>
+        <h4>Brought to you by NASA's image API</h4>
       </header>
       <section className="main-container">
         {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard nasaData={el} key={idx} />) : <h1>loading</h1>}
