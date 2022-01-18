@@ -18,6 +18,8 @@ export default function ImageCard(props) {
     return initialValue;
   });
 
+  const isImage = props.imgData.url.includes("youtube") ? false : true
+
   const handleLikeClick = () => {
     setLiked(!liked);
     localStorage.setItem(props.imgData.date, (!liked).toString())
@@ -31,7 +33,7 @@ export default function ImageCard(props) {
         className="card-header"
       />
       <CardMedia
-        component="img"
+        component={isImage ? "img" : "iframe"}
         height="194"
         image={props.imgData.url}
         alt={props.imgData.title}
