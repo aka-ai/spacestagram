@@ -47,7 +47,7 @@ export default function ImageCard(props) {
         <IconButton
           onClick={handleLikeClick}
           aria-label="add to favorites">
-          {liked ? <FavoriteIcon /> :
+          {liked ? <FavoriteIcon color="primary" /> :
             <FavoriteBorderIcon />}
         </IconButton>
         <IconButton aria-label="share">
