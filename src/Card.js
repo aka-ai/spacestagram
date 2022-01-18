@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -11,7 +11,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 
 export default function ImageCard(props) {
-  // const [liked, setLiked] = useState(false)
   const [liked, setLiked] = useState(() => {
     const saved = localStorage.getItem(props.imgData.date);
     const initialValue = saved === "true" ? true : false;
@@ -19,15 +18,10 @@ export default function ImageCard(props) {
     return initialValue;
   });
 
-  //1) keeep react & localstorage in-sync
-  //2)on initial load, use localstorage to populate initial react state
   const handleLikeClick = () => {
     setLiked(!liked);
     localStorage.setItem(props.imgData.date, (!liked).toString())
   };
-  // useEffect(() => {
-  //   localStorage.setItem("liked", liked.toString())
-  // })
 
   return (
     <Card sx={{ maxWidth: 400 }}>

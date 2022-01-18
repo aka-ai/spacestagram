@@ -5,6 +5,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import ImageCard from './Card.js'
+import Loading from './Loading.js'
 
 function App() {
   
@@ -27,11 +28,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Spacestagram</h3>
-        <h4>Brought to you by NASA's image API</h4>
+        <h2>Spacestagram</h2>
+        <h3>Brought to you by NASA's image API</h3>
       </header>
       <section className="main-container">
-        {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard imgData={el} key={idx} />) : <h1>loading</h1>}
+        {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard imgData={el} key={idx} />) : <Loading />}
       </section>
       <footer className="footer">
         <p>By Ai Akarach</p>

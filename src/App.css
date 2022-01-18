@@ -2,22 +2,20 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 header {
   background-color: white;
   min-height: 10vh;
-  font-size: calc(10px + 2vmin);
   color: #282c34;
 }
 
 footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: white;
-  min-height: 10vh;
   color: #282c34;
+  text-align: center;
 }
 
 .App-link {
@@ -33,8 +31,13 @@ footer {
   background-color: #1A2027;
   justify-content: center;
   color: white;
+  min-height: 70vh;
 }
 
 .card-header {
   height: 80px
+}
+
+.loading-message {
+  font-size: 1.5rem;
 }
