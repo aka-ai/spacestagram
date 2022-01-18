@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -11,26 +11,40 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 
 export default function ImageCard(props) {
-  const [liked, setLiked] = React.useState(false);
+  // const [liked, setLiked] = useState(false)
+  const [liked, setLiked] = useState(() => {
+    const saved = localStorage.getItem(props.imgData.date);
+    const initialValue = saved === "true" ? true : false;
+
+    return initialValue;
+  });
+
+  //1) keeep react & localstorage in-sync
+  //2)on initial load, use localstorage to populate initial react state
   const handleLikeClick = () => {
     setLiked(!liked);
+    localStorage.setItem(props.imgData.date, (!liked).toString())
   };
+  // useEffect(() => {
+  //   localStorage.setItem("liked", liked.toString())
+  // })
+
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardHeader
-        title={props.nasaData.title}
-        subheader={props.nasaData.date}
+        title={props.imgData.title}
+        subheader={props.imgData.date}
         className="card-header"
       />
       <CardMedia
         component="img"
         height="194"
-        image={props.nasaData.url}
-        alt={props.nasaData.title}
+        image={props.imgData.url}
+        alt={props.imgData.title}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {props.nasaData.explanation}
+          {props.imgData.explanation}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -47,3 +61,4 @@ export default function ImageCard(props) {
     </Card>
   );
 }
+

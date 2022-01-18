@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     // If this were a real aap, I would move this call to the backend and not hard code the API Key. Since this is a free NASA API, there's no risk.
-    const restEndpoint = "https://api.nasa.gov/planetary/apod?api_key=ehVgInclieKHMWfMaX93gRhYQ3rWOpM3G5QaiTJl&count=10";
+    const restEndpoint = "https://api.nasa.gov/planetary/apod?api_key=ehVgInclieKHMWfMaX93gRhYQ3rWOpM3G5QaiTJl&start_date=2021-11-14";
 
     const callRestApi = async () => {
       const response = await fetch(restEndpoint);
@@ -31,7 +31,7 @@ function App() {
         <h4>Brought to you by NASA's image API</h4>
       </header>
       <section className="main-container">
-        {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard nasaData={el} key={idx} />) : <h1>loading</h1>}
+        {apiResponse.length ? apiResponse.map((el, idx) => <ImageCard imgData={el} key={idx} />) : <h1>loading</h1>}
       </section>
       <footer className="footer">
         <p>By Ai Akarach</p>
