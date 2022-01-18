@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShareIcon from '@mui/icons-material/Share';
+import Copy from './Copy'
 
 export default function ImageCard(props) {
   const [liked, setLiked] = useState(() => {
@@ -51,7 +51,7 @@ export default function ImageCard(props) {
             <FavoriteBorderIcon />}
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon />
+          <Copy imageURL={props.imgData.url} />
         </IconButton>
       </CardActions>
     </Card>
