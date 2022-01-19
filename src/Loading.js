@@ -7,12 +7,12 @@ const loadingMessages = [
   "🛰 Aligning Satellites...",
   "🔭 Polishing Telescope..."
 ]
-export default function loading() {
+export default function loading(props) {
   const index = Math.floor(Math.random() * loadingMessages.length)
-  const message = loadingMessages[index]
+  const message = props.errorMsg ? props.errorMsg : loadingMessages[index]
   return (
     <div>
-        <CircularProgress />
+      {props.errorMsg ? <p className="error-message">🙊</p> : <CircularProgress /> }
       <p className="loading-message">{message}</p>
     </div>
   );
