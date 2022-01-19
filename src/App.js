@@ -53,8 +53,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Spacestagram</h2>
-        <h3>Brought to you by <a href="https://apod.nasa.gov/apod/astropix.html">NASA's Astronomy Picture of the Day</a></h3>
+        <h1>Spacestagram</h1>
+        <h2>Brought to you by <a href="https://apod.nasa.gov/apod/astropix.html">NASA's Astronomy Picture of the Day</a></h2>
         <nav>
           <StyledEngineProvider injectFirst >
             <DatePicker

@@ -8,6 +8,9 @@ header {
   color: #282c34;
 }
 
+a {
+  color: #1876D1;
+}
 nav {
   display: felx;
   flex-direction: row;
