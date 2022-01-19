@@ -26,31 +26,49 @@ export default function ImageCard(props) {
   };
 
   return (
-    <Card sx={{ maxWidth: 400 }}>
+    <Card
+      sx={{
+        maxWidth: 400,
+      }}>
       <CardHeader
         title={props.imgData.title}
         subheader={props.imgData.date}
-        className="card-header"
+        sx={{
+          height: 100
+        }}
       />
       <CardMedia
         component={isImage ? "img" : "iframe"}
-        height="194"
+        height="300"
         image={props.imgData.url}
         alt={props.imgData.title}
       />
-      <CardContent>
+      <CardContent
+        sx={{
+          height: 100,
+          overflow: "scroll"
+        }}
+      >
         <Typography variant="body2" color="text.secondary">
           {props.imgData.explanation}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions
+        disableSpacing
+        sx={{
+          justifyContent: "right"
+        }}
+      >
         <IconButton
           onClick={handleLikeClick}
           aria-label="add to favorites">
           {liked ? <FavoriteIcon color="primary" /> :
             <FavoriteBorderIcon />}
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton
+          sx={{ fontSize:0 }}
+          aria-label="share"
+        >
           <Copy imageURL={props.imgData.url} />
         </IconButton>
       </CardActions>

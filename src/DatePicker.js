@@ -6,21 +6,16 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import dayjs from 'dayjs'
+import parseISO from 'date-fns/parseISO';
 
 export default function DatePicker(props) {
-  const [startDate, setStartDate] = useState(dayjs().subtract(10, 'day').format("YYYY-MM-DD"));
-  const [endDate, setEndDate] = useState(dayjs().format("YYYY-MM-DD"));
+  const [startDate, setStartDate] = useState(dayjs().subtract(10, 'day'));
+  const [endDate, setEndDate] = useState(dayjs());
   const [inputErrorMsg, setInputErrorMsg] = useState('');
 
   const isInputValid = (testStartDate, testEndDate) => {
     if (dayjs(testEndDate).isBefore(dayjs(testStartDate), 'day')) {
-      setInputErrorMsg('End date is before start date');
-      return false;
-    } else if (dayjs(testEndDate).isAfter(dayjs(), 'day')) {
-      setInputErrorMsg('End date must be on or before today');
-      return false;
-    } else if (dayjs(testStartDate).isBefore('1995-06-16', 'day')) {
-      setInputErrorMsg('Start date must be after June 16, 1995');
+      setInputErrorMsg('End date must be after start date');
       return false;
     } else if (dayjs(testEndDate).diff(dayjs(testStartDate), 'day') >= 100) {
       setInputErrorMsg('Max supported range is 100 days');
@@ -43,69 +38,78 @@ export default function DatePicker(props) {
       props.onSelectEndDate(newEndDate)
     }
   }
-
   return (
-    <div>
-      <p className="input-error-msg" >{inputErrorMsg}</p>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Stack spacing={3}>
-          {window.mobileCheck() ?
-            <MobileDatePicker
-              label="Pick a start Date"
-              inputFormat="MM/dd/yyyy"
-              value={startDate}
-              onChange={selectStartDate}
-              renderInput={(params) => <TextField {...params} />}
-              sx={{
-                position: "absolute",
-                right: "0px",
-                width: "30%",
-                padding: "10px"
-              }}
-            />
-            :
-            <DesktopDatePicker
-              label="Pick a start Date"
-              inputFormat="MM/dd/yyyy"
-              value={startDate}
-              onChange={selectStartDate}
-              renderInput={(params) => <TextField {...params} />}
-              sx={{
-                width: 300,
-                color: 'success.main',
-              }}
-            />
-          }
-        </Stack>
-        <Stack spacing={3}>
-          {window.mobileCheck() ?
-            <MobileDatePicker
-              label="Pick a end Date"
-              inputFormat="MM/dd/yyyy"
-              value={endDate}
-              onChange={selectEndDate}
-              renderInput={(params) => <TextField {...params} />}
-              sx={{
-                width: 300,
-                color: 'success.main',
-              }}
-            />
-            :
-            <DesktopDatePicker
-              label="Pick a end Date"
-              inputFormat="MM/dd/yyyy"
-              value={endDate}
-              onChange={selectEndDate}
-              renderInput={(params) => <TextField {...params} />}
-              sx={{
-                width: 300,
-                color: 'success.main',
-              }}
-            />
-          }
-        </Stack>
-      </LocalizationProvider>
-    </div>
+    <React.Fragment>
+      <div className="datepicker">
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <Stack spacing={3}>
+            {window.mobileCheck() ?
+              <MobileDatePicker
+                label="Start Date"
+                inputFormat="MM/dd/yyyy"
+                value={startDate}
+                onChange={selectStartDate}
+                minDate={parseISO('1995-06-16')}
+                maxDate={parseISO(dayjs().format('YYYY-MM-DD'))}
+                renderInput={(params) => <TextField {...params} />}
+                sx={{
+                  position: "absolute",
+                  right: "0px",
+                  width: "30%",
+                  padding: "10px"
+                }}
+              />
+              :
+              <DesktopDatePicker
+                label="Start Date"
+                inputFormat="MM/dd/yyyy"
+                value={startDate}
+                onChange={selectStartDate}
+                minDate={parseISO('1995-06-16')}
+                maxDate={parseISO(dayjs().format('YYYY-MM-DD'))}
+                renderInput={(params) => <TextField {...params} />}
+                sx={{
+                  width: 300,
+                  color: 'success.main',
+                }}
+              />
+            }
+          </Stack>
+          <Stack spacing={3}>
+            {window.mobileCheck() ?
+              <MobileDatePicker
+                label="End Date"
+                inputFormat="MM/dd/yyyy"
+                value={endDate}
+                onChange={selectEndDate}
+                minDate={parseISO('1995-06-16')}
+                maxDate={parseISO(dayjs().format('YYYY-MM-DD'))}
+                renderInput={(params) => <TextField {...params} />}
+                sx={{
+                  width: 300,
+                  color: 'success.main',
+                }}
+              />
+              :
+              <DesktopDatePicker
+                label="End Date"
+                inputFormat="MM/dd/yyyy"
+                value={endDate}
+                onChange={selectEndDate}
+                minDate={parseISO('1995-06-16')}
+                maxDate={parseISO(dayjs().format('YYYY-MM-DD'))}
+                renderInput={(params) => <TextField {...params} />}
+                sx={{
+                  width: 300,
+                  color: 'success.main',
+                }}
+              />
+            }
+          </Stack>
+        </LocalizationProvider>
+      </div>
+        <p className="input-error-msg" >{inputErrorMsg}</p>
+    </React.Fragment>
   );
 }
 

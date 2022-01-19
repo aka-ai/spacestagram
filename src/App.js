@@ -54,9 +54,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>Spacestagram</h2>
-        <h3>Brought to you by NASA's image API</h3>
+        <h3>Brought to you by <a href="https://apod.nasa.gov/apod/astropix.html">NASA's Astronomy Picture of the Day</a></h3>
         <nav>
-          <StyledEngineProvider injectFirst>
+          <StyledEngineProvider injectFirst >
             <DatePicker
               onSelectStartDate={selectStartDate}
               onSelectEndDate={selectEndDate}
